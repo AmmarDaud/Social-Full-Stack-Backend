@@ -9,7 +9,7 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const PROUD_URL =process.env.PROUD_URL
+const PROD_URL =process.env.PROD_URL
 
 const whitelist = ["http://localhost:3000", PROD_URL];
 
