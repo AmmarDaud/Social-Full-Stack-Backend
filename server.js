@@ -28,8 +28,8 @@ app.use(express.json());
 
 
 // Routes
-app.use("/users", usersRouter);
-app.use("/posts", postsRouter);
+app.use("/api/users", usersRouter);
+app.use("/api/posts", postsRouter);
 
 
 db.once("open", () => {
