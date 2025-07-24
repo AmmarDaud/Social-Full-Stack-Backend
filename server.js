@@ -9,15 +9,27 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const PROUD_URL =process.env.PROUD_URL
 
-app.use(cors({origin: "http://localhost:5173"}));
+const whitelist = ["http://localhost:3000", PROD_URL];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 
 // Routes
-app.use("/api/users", usersRouter);
-app.use("/api/posts", postsRouter);
+app.use("/users", usersRouter);
+app.use("/posts", postsRouter);
 
 
 db.once("open", () => {
